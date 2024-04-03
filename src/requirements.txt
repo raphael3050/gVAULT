@@ -1,0 +1,5 @@
+grpcio==1.57.0
+grpcio-tools==1.57.0
+protobuf==4.24.0
+pycryptodome==3.18.0
+six==1.16.0

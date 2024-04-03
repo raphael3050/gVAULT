@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package vault;
+
+service PasswordVault {
+    rpc StorePassword(StoreRequest) returns (StoreResponse);
+    rpc RetrievePassword(RetrieveRequest) returns (RetrieveResponse);
+    rpc Register(UserRequest) returns (UserResponse);
+    rpc Login(UserRequest) returns (UserResponse);
+    rpc SearchUsersByName(SearchRequest) returns (SearchResponse);
+}
+
+message StoreRequest {
+    string token = 1;
+    string label = 2;
+    string password = 3;
+}
+
+message StoreResponse {
+    string status = 1;
+}
+
+message RetrieveRequest {
+    string token = 1;
+}
+
+message RetrieveResponse {
+    map<string, string> passwords = 1;  // Label as key and password as value
+}
+
+message UserRequest {
+    string username = 1;
+    string master_password = 2;
+}
+
+message UserResponse {
+    string status = 1;
+    string message = 2;
+}
+
+message SearchRequest {
+    string name = 1;
+}
+
+message SearchResponse {
+    repeated string usernames = 1;
+}
